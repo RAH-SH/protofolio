@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahaf Sharaf Eddin - Fachinformatiker anwendungsentwicklung</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            /* Indigo */
+            --secondary: #10b981;
+            /* Emerald */
+            --accent: #f59e0b;
+            /* Amber */
+            --dark: #111827;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            color: var(--white);
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+        }
+
+        .about {
+            background: var(--light);
+        }
+
+        .skills {
+            background: var(--white);
+        }
+
+        .projects {
+            background: linear-gradient(135deg, var(--light) 0%, #e0f2fe 100%);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .skill {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.6s;
+        }
+
+        .skill:hover::before {
+            left: 100%;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(79, 70, 229, 0.2);
+        }
+
+        .skill i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .skill h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--accent);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .project-links a {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--gray);
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container container">
+            <div class="logo">
+                <h2>Rahaf Sharaf Eddin</h2>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Start</a></li>
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+            <i class="fas fa-bars" id="menuToggle"
+                style="display:none; font-size:1.5rem; cursor:pointer; color:var(--primary);"></i>
+        </div>
+    </nav>
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content container">
+            <h1>Rahaf Sharaf Eddin</h1>
+            <p>Fachinformatiker Anwendungsentwicklung (Umschulung) | Front | Backend-Entwickler - Berlin</p>
+            <button class="cta-button" onclick="scrollToProjects()">Meine Projekte entdecken</button>
+        </div>
+    </section>
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Über mich</h2>
+            <p>Hallo, ich bin Rahaf, Software-Entwicklerin aus Syrien, jetzt in Berlin-Lichtenberg.
+                Mit Grosse Erfahrung als Application Developer und Umschulung zum Fachinformatiker bei BBQ Berlin.</p>
+            <p>Skills: Python/Django, C#/.NET, React, Laravel, Netzwerke. Suche Pflichtpraktikum ab Juni 2026!</p>
+        </div>
+    </section>
+    <!-- Skills -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Meine Kompetenzen</h2>
+            <div class="skills-grid">
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Django</p>
+                </div>
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fab fa-c-sharp"></i> 
+                    <h3>C# / .NET</h3>
+                    <p>WPF, ASP.NET, Desktop-Apps</p>
+                </div>
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fab fa-react"></i>
+                    <h3>React / JavaScript</h3>
+                    <p>Frontend, HTML/CSS</p>
+                </div>
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Netzwerke</h3>
+                    <p>Cisco 1</p>
+                </div>
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fas fa-database"></i>
+                    <h3>Datenbanken</h3>
+                    <p>SQL, Design, Queries</p>
+                </div>
+                <div class="skill" onclick="scrollToProjects()">
+                    <i class="fab fa-php"></i>
+                    <h3>PHP / Laravel</h3>
+                    <p>Web-Frameworks</p>
+                </div>
+                 <div class="skill" onclick="scrollToProjects()">
+                     <i class="fab fa-java"></i>
+                    <h3>Java</h3>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects -->
+
+<section id="projects" class="projects">
+        <div class="container">
+            <h2>Ausgewählte Projekte mit Css</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+
+                    <h3>Twitter Style</h3>
+             
+                    <div class="project-links"><a href="https://github.com/RAH-SH/twitter-CSS" class="btn-github" target="_blank"><i
+                                class="fab fa-github"></i> Code</a>
+                        <a href="https://rah-sh.github.io/twitter-CSS/" class="btn-demo" target="_blank"><i
+                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+               
+                <div class="project-card">
+                    <h3>YouTube Style</h3>                
+                    <div class="project-links">
+                        <a href="https://github.com/RAH-SH/Youtube-templateCSS" class="btn-github" target="_blank"><i
+                                class="fab fa-github"></i> Code</a>
+                        <a href="https://rah-sh.github.io/Youtube-templateCSS/" class="btn-demo" target="_blank"><i
+                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                   
+                    <h3>HTML/CSS/JS Tutorial Projekt.</h3>
+                    <div class="project-links"><a href="https://github.com/RAH-SH/css-Template2" class="btn-github"
+                            target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://rah-sh.github.io/css-Template2/" class="btn-demo" target="_blank"><i
+                                class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+
+
+                <div class="project-card">
+                    <h3>Css-Template</h3>
+         
+                    <div class="project-links">
+                        <a href="https://github.com/RAH-SH/Css-Template/" class="btn-github" target="_blank">Code</a>
+                        <a href="https://rah-sh.github.io/Css-Template/" class="btn-demo" target="_blank">Live</a>
+                    </div>
+                </div>
+
+
+                
+
+               
+
+            </div>
+        </div>
+        <!-- Füge mehr Projekte hinzu -->
+        </div>
+        </div>
+    </section>  
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Ausgewählte Projekte Für JS</h2>
+            <div class="projects-grid">
+                
+               
+              
+
+               
+                <div class="project-card">
+                    <h3>JS</h3>
+                    <p>Hung-Mann</p>
+                    <div class="project-links"><a href="https://github.com/RAH-SH/JS-HungMann/" class="btn-github"
+                            target="_blank">Code</a>
+                        <a href="https://rah-sh.github.io/JS-HungMann/" class="btn-demo" target="_blank">Live</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>JS</h3>
+                    <p>Spiel-Guess</p>
+                    <div class="project-links"> <a href="https://github.com/RAH-SH/JS-SpieleGuess/" class="btn-github"
+                            target="_blank">Code</a>
+                        <a href="https://rah-sh.github.io/JS-SpieleGuess/" class="btn-demo" target="_blank">Live</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Füge mehr Projekte hinzu -->
+        </div>
+        </div>
+    </section>
+
+
+
+
+  
+  
+
+
+    <!-- Certifications Section -->
+<section id="certifications" class="certifications" style="padding:100px 0; background:linear-gradient(135deg, var(--light) 0%, #dbeafe 100%);">
+    <div class="container">
+        <h2>Letzte Zertifikate</h2>
+        <div class="cert-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px;">
+            <!-- Beispiel Oracle Java -->
+            <div class="cert-card" style="background:var(--white); padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); text-align:center; transition:all 0.3s;">
+                <img src="images/2.jpg" alt="Coursera Java Certificate" width="150">
+                <h3>Object Oriented Programming in Java</h3>
+                <p>Coursera . IBM | 02/2026 </p>
+                <a href="https://coursera.org/share/2b22356a32c5512297ffb7ee30d9c3de" target="_blank" class="cert-link" style="display:inline-block; margin:5px; padding:10px 20px; background:var(--primary); color:var(--white); text-decoration:none; border-radius:25px; font-weight:500;">Verifizieren</a>
+         
+            </div>
+            
+            <!-- Beispiel Coursera -->
+            <div class="cert-card" style="background:var(--white); padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.1); text-align:center; transition:all 0.3s;">
+             
+                <img src="images/2.jpg" alt="Coursera Java Certificate" width="150">
+                <h3>Java Programming for Beginners</h3>
+                <p>Coursera . IBM | 01/2026</p>
+                <a href="https://coursera.org/share/dc1f85bc533a407de1b894f5e121a9c6" target="_blank" class="cert-link" style="display:inline-block; margin:5px; padding:10px 20px; background:#0056D2; color:var(--white); text-decoration:none; border-radius:25px;">Verifizieren</a>
+            </div>
+            
+            <!-- HackerRank -->
+           
+            
+            <!-- Füge mehr hinzu -->
+        </div>
+    </div>
+</section>
+
+  <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <p>Für Praktika oder Kooperationen – ich freue mich auf Ihre Nachricht!</p>
+            <div class="contact-info">
+                <a href="mailto:rahaf.sharafeddin@gmail.com"><i class="fas fa-envelope"> Kontakt Mir</i></a>
+                <p><i class="fas fa-phone"></i> +49 1630009374</p>
+                <a href="https://github.com/RAH-SH"><i class="fab fa-github"><h4>Meine Arbeit auf GitHub</h4></i></a>
+                <p><a href="www.linkedin.com/in/rahaf-sharaf-eddin-7b9b3b274"><i class="fab fa-linkedin"> Profil LinkedIn</i></a> </p>
+
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Rahaf Sharaf Eddin - Alle Rechte vorbehalten | <a href="#home"
+                    style="color:var(--secondary);">Nach oben</a></p>
+        </div>
+    </footer>
+    <script>
+        function scrollToProjects() {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Smooth scroll für Nav-Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        // Responsive Menu
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                menuToggle.style.display = 'none';
+            } else {
+                menuToggle.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
